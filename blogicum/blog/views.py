@@ -44,3 +44,16 @@ posts = [
     },
 ]
 
+def index(request):
+    template = 'blog/index.html'
+    return render(request, template)
+
+def post_detail(request, id):
+    template = 'blog/post_detail.html'
+    context = {'post': posts[id]}
+    return render(request, template, context)
+
+def category_posts(request, category_slug):
+    template = 'blog/category_posts.html'
+    context = {'category_posts': [post for post in posts if post.category == category_slug]}
+    return render(request, template, context)
